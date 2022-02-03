@@ -24,34 +24,43 @@ function getDay(date, lang) {
     },
   };
 
-  return lang === "en" ? dayNames.en[date.getDay()] : dayNames.ru[date.getDay()]
+  // return lang === "en" ? dayNames.en[date.getDay()] : dayNames.ru[date.getDay()]
 
-  //  СДЕЛАЛ, случайно хахаах) огромная подсказка, что можно сделать одной строкой )
-  // не смешно, но, язык сразу вывел понял как, пол часа не мог понять как день вывести )
+  return dayNames[lang][date.getDay()]
+  
+
 }
 
 // Принимает объект даты, и должно вернуть компоненты даты в виде строки.
 // Вид должен быть такой 12:02(часы и минуты), то есть если у вас одно число на одном из
 // компонентов, то добавляем 0 перед ним
 function formatTime(date) {
-  let time = `${hours(date)}:${minutes(date)}`;
+  let time = `${plusZero(date.getHours())}:${plusZero(date.getMinutes())}`;
   return time;
 }
-function hours (item) {
-  let time = item.getHours();
-  if (time < 10) {
-    return "0" + item.getHours();
-  } return time;
+
+function plusZero (item) {
+    if (item < 10) {
+      return "0" + item;
+    } return item;
 }
-function minutes (item) {
-  let time = item.getMinutes();
-  if (time < 10) {
-    return "0" + item.getMinutes();
-  } return time;
+// function hours (item) {
+//   let time = item.getHours();
+//   if (time < 10) {
+//     return "0" + item.getHours();
+//   } return time;
+// }
+// function minutes (item) {
+//   let time = item.getMinutes();
+//   if (time < 10) {
+//     return "0" + item.getMinutes();
+//   } return time;
+
+// }
   //  Тут забыл как сделать в одно дейтсвите, пробовал
   //  но не получилось, по этому сделал 2 функции и 
   // вкинул их в форматТайм .. ну , главное работает)
-}
+
 /*
 Напишите функцию getLastDayOfMonth(year, month), 
 возвращающую последнее число месяца. Иногда это 30, 31
