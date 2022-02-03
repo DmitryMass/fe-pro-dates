@@ -41,7 +41,7 @@ function formatTime(date) {
 
 function plusZero (item) {
     if (item < 10) {
-      return "0" + item;
+      return `${'0' + item}`
     } return item;
 }
 // function hours (item) {
