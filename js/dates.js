@@ -23,13 +23,35 @@ function getDay(date, lang) {
       6: 'Суббота',
     },
   };
+
+  return lang === "en" ? dayNames.en[date.getDay()] : dayNames.ru[date.getDay()]
+
+  //  СДЕЛАЛ, случайно хахаах) огромная подсказка, что можно сделать одной строкой )
+  // не смешно, но, язык сразу вывел понял как, пол часа не мог понять как день вывести )
 }
 
 // Принимает объект даты, и должно вернуть компоненты даты в виде строки.
 // Вид должен быть такой 12:02(часы и минуты), то есть если у вас одно число на одном из
 // компонентов, то добавляем 0 перед ним
-function formatTime(date) {}
-
+function formatTime(date) {
+  let time = `${hours(date)}:${minutes(date)}`;
+  return time;
+}
+function hours (item) {
+  let time = item.getHours();
+  if (time < 10) {
+    return "0" + item.getHours();
+  } return time;
+}
+function minutes (item) {
+  let time = item.getMinutes();
+  if (time < 10) {
+    return "0" + item.getMinutes();
+  } return time;
+  //  Тут забыл как сделать в одно дейтсвите, пробовал
+  //  но не получилось, по этому сделал 2 функции и 
+  // вкинул их в форматТайм .. ну , главное работает)
+}
 /*
 Напишите функцию getLastDayOfMonth(year, month), 
 возвращающую последнее число месяца. Иногда это 30, 31
@@ -39,7 +61,12 @@ year – год из четырёх цифр, например, 2012.
 month – месяц от 0 до 11.
 К примеру, getLastDayOfMonth(2012, 1) = 29 (високосный год, февраль).
 */
-function getLastDayOfMonth(year, month) {}
+function getLastDayOfMonth(year, month) {
+  const lastDay = new Date(year, month + 1, 0)
+  //  год, месяц + 1, тк следующий ноль означает, -1 день 
+  // следующего месяца, тобишь передаем февраль, он возвращает на последний день января, значит нужно добавить еще 1 месяц, чтобы вышел последний день ферваля.
+  return lastDay.getDate()
+}
 
 module.exports = {
   getDay,
